@@ -8,22 +8,28 @@ class Creature {
         this.y = 5;
     }
 
+    update(dt) {
+        this.leftBoardX =  this.x > 5;
+        this.leftBoardY =  this.y < 1;
+    }
+
     render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 78);
+        ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 74);
     }
 
-    upddate(dt) {
-        this.leftBoardX > 5;
-        this.leftBoardY < 1;
-    }
+
 }
-
 
 class Player extends Creature {
     constructor() {
         super();
         this.sprite += 'char-boy.png';
     }
+
+    handleInput(){
+        
+    }
+
 }
 
 class Enemy extends Creature {
@@ -32,6 +38,16 @@ class Enemy extends Creature {
         this.sprite += 'enemy-bug.png';
         this.x = x;
         this.y = y;
+        this.speed = 1 + Math.random() * 3.; //sets speeds
+    }
+
+    update(dt) {
+        super.update();
+        if (this.leftBoardX) {
+            this.x = -1;
+        } else {
+            this.x += this.speed * dt; //change this to make it go at dif speeds?
+        }
     }
 }
 
