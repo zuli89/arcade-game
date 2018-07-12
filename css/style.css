@@ -53,3 +53,37 @@ button:hover {
 header span{
     font-size: 22px;
 }
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+h1{
+    width: 100%;
+    order: 0;
+}
+
+.game-status{
+    margin:auto;
+    justify-content: space-between
+}
+
+.level-tag {
+    text-align: left;
+    width: 40%;
+    order:1;
+    margin-left: 5%;
+}
+
+.lives{
+     order:2;
+     width: 60%;
+     padding: 0 10%;
+     color: red;
+}
+
+.lives-tag{
+    color: black;
+}

@@ -38,14 +38,22 @@ class Player {
 
     //win game when arriving at end point and clear enemies to change enemy speed
     update() {
-        checkCollisions();
         this.win();
+        checkCollisions();
     }
 
     //sets position of player when it collides
     lose() {
         this.x = 2;
         this.y = 4.51;
+        lives -= 1;
+        setTimeout(() => { 
+            collision = false}, 400); //chan
+        if ($('i').length > 1){
+            $('i:eq(0)').remove();
+        } else {
+            console.log('game over');
+        }
     }
 
     //sets position of player when winning
@@ -93,6 +101,8 @@ class Enemy {
 //sets game level, it's incremented after each game is completed
 let level = 1;
 let levelcount = 1;
+let lives = $('i').length;
+let collision = false; //if a collision has not happened, function set to false
 
 //enemies array
 let allEnemies = [];
@@ -118,27 +128,29 @@ function createEnemies() {
 
 
 //Game play
-
 //check for collisions between player and enemy
 function checkCollisions() {
-    for (let i = 0; i < allEnemies.length;i++) {
-        if  ((Math.abs(player.y - allEnemies[i].y) > 0 &&
-            Math.abs(player.y - allEnemies[i].y) < 0.5 &&
-            Math.abs(player.x - allEnemies[i].x) < 0.5)) {
-            console.log('squish');
-            setTimeout(() => { 
-                player.lose();}, 400);
-            }
+    if (!collision) {
+        for (let i = 0; i < allEnemies.length;i++) {
+            if  ((Math.abs(player.y - allEnemies[i].y) > 0 &&
+                Math.abs(player.y - allEnemies[i].y) < 0.5 &&
+                Math.abs(player.x - allEnemies[i].x) < 0.5)) {
+                collision = true;
+                console.log('squish');
+                setTimeout(() => { 
+                    player.lose();}, 400);
+                }
+        }
     }
 };
 
+//this function handles button actions on click
 $(document).ready(function(){
     $("button").click(function(){
-        console.log('test');
-        createEnemies();
-        $('#level').html(levelcount);
-        $('#modal').css("visibility", "hidden");
-        $('.overlay').css("visibility", "hidden");
+        createEnemies(); //creates new enemies array
+        $('#level').html(levelcount); //updates level on header
+        $('#modal').css("visibility", "hidden"); //hides modal
+        $('.overlay').css("visibility", "hidden"); //hides overlay
     });
 });
 
