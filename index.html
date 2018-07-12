@@ -23,18 +23,22 @@
         </p>
     </header>
 
-<div class = "overlay">
-    <body>
+    <div class = "overlay">
         <script src="js/resources.js"></script>
         <script src="js/app.js"></script>
         <script src="js/engine.js"></script>
 
-        <div id="modal">
+         <div class="modal" id="play-next">
             <img src = 'images/char-cat-girl.png' alt ='player image'>
             <br>
-            <p></p>Congratulations! <br> You completed level <span id ="level-done"></span></p>
-            <button class="next-level"> Play Next Level </button>
+            <p>Congratulations! <br> You completed level <span id ="level-done"></span></p>
+            <button id="next-level"> Play Next Level </button>
         </div>
-    </body>
-</div>
+
+        <div class= "modal" id="game-over">
+            <i class="fas fa-dizzy"></i> 
+            <p class = "game-over-text"> Game Over </p>
+            <button id = "play-again"> Play Again </button>
+        </div>
+    </div>
 </html>
