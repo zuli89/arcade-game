@@ -1,6 +1,25 @@
-frontend-nanodegree-arcade-game
+Arcade game clone
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Description 
+The arcade game clone is a simialr game to Frogger, where the player need to cross through a path with obstacles until getting to a fisnish point.
+In this game the enemies are portrayed as bugs that move accross the screen at different speeds. The user moves the player across the road using arrow keys until arriving to the water.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Game Play
+1. Use arrow keys to move player accross the screen
+2. Cross the road while avoiding incoming enemies.
+3. Reach the water to win a level
+4. Game ends when player runs out of lives
+
+### Lives
+A player starts with 5 lives. If a player collides with an enemy, a life is lost. If the player runs out of lives, the game ends and player play restart on level 1. 
+
+### Levels
+If a player wins a game, it will be prompted to play the next level. On each level the enemy speed is increased. 
+
+## Libraries and resources
+
+* jQuery
+* Awesome Font
+* Google Fonts
+* [FEND Arcade Game Project - Getting Started(https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS)
