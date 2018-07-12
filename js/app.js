@@ -64,6 +64,7 @@ class Player {
             allEnemies = []; //resets enemy array so new speeds can be created when leveling up
             //shows modal
             $('.modal#play-next').css("visibility", "visible"); 
+            $('#next-level').focus();
             $('.overlay').css("visibility", "visible");
             $('#level-done').html(levelcount-1); //shows which level was completed
             player.moving = false; //disables user to move player while modal is open
@@ -82,6 +83,7 @@ class Player {
             allEnemies = [];
             $('.modal#game-over').css("visibility", "visible");
             $('.overlay').css("visibility", "visible");
+            $('#play-again').focus();
             player.moving = false;
         }
     }
