@@ -1,21 +1,19 @@
-
-
 //Creating player and its properties
 
 class Player {
     constructor() {
         this.x = 2;
-        this.y = 4.51; //set to 4.5 to solve a spacing issue when moving player
-        this.sprite = 'images/char-boy.png';
+        this.y = 4.51; //set to 4.51 to solve a spacing issue when moving player
+        this.sprite = 'images/char-cat-girl.png';
     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 90);
     }
-
+    //used to move player
     handleInput(input) {
         switch (input) {
-            // Set boundaries for player movement
+            // Sets boundaries for player movement
             case 'left':
                 this.x = this.x > 0 ? this.x - 1 : this.x;
                 break;
@@ -31,49 +29,44 @@ class Player {
             default:
                 break;
             }
-
+        //counts when player gets to top row, used for increasing levels
         if (this.y <= 0) {
-                level += 1;
-                console.log(level);
-
+                level += 0.5;
+                levelcount += 1;
         }
-        //this.moving = true; //player is moving
     }
+
     //win game when arriving at end point and clear enemies to change enemy speed
     update() {
         checkCollisions();
         this.win();
     }
 
+    //sets position of player when it collides
     lose() {
         this.x = 2;
         this.y = 4.51;
     }
 
+    //sets position of player when winning
     win() {
         if (this.y <= 0){
             setTimeout(() => { 
                 this.x = 2;
                 this.y = 4.51;}, 400);
-            allEnemies = [];
-            createEnemies();
+            allEnemies = []; //resets enemy so new speeds can be used when leveling up
+            $('#modal').css("visibility", "visible");
+            $('.overlay').css("visibility", "visible");
+            $('#level-done').html(levelcount-1);
         }
     }
     
 }
 
-
-function checkCollisions() {
-        for (let i = 0; i < allEnemies.length;i++) {
-            if  ((Math.abs(player.y - allEnemies[i].y) > 0 &&
-                Math.abs(player.y - allEnemies[i].y) < 0.5 &&
-                Math.abs(player.x - allEnemies[i].x) < 0.2)) {
-                console.log('squish');
-                player.lose();
-                } 
-        }
-};
-
+//creates player
+const player = new Player();
+ 
+//setting up enemy 
 class Enemy {
     constructor(x, y, speed) {
         this.sprite = 'images/enemy-bug.png';
@@ -88,7 +81,7 @@ class Enemy {
         if (this.leftGameX) {
             this.x = -1;
         } else {
-            this.x += this.speed * dt; //change this to make it go at dif speeds?
+            this.x += this.speed * dt; 
         }
     }
     
@@ -97,17 +90,12 @@ class Enemy {
         }
 }
 
-
 //sets game level, it's incremented after each game is completed
 let level = 1;
+let levelcount = 1;
 
-//creates player
-const player = new Player();
- 
 //enemies array
 let allEnemies = [];
-
-//let allEnemies = [...Array(3)].map((_,i) => new Enemy(0, i+1,  1 + Math.random() * 2));
 
 createEnemies();
 
@@ -128,6 +116,34 @@ function createEnemies() {
     } 
 };
 
+
+//Game play
+
+//check for collisions between player and enemy
+function checkCollisions() {
+    for (let i = 0; i < allEnemies.length;i++) {
+        if  ((Math.abs(player.y - allEnemies[i].y) > 0 &&
+            Math.abs(player.y - allEnemies[i].y) < 0.5 &&
+            Math.abs(player.x - allEnemies[i].x) < 0.5)) {
+            console.log('squish');
+            setTimeout(() => { 
+                player.lose();}, 400);
+            }
+    }
+};
+
+$(document).ready(function(){
+    $("button").click(function(){
+        console.log('test');
+        createEnemies();
+        $('#level').html(levelcount);
+        $('#modal').css("visibility", "hidden");
+        $('.overlay').css("visibility", "hidden");
+    });
+});
+
+
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -140,3 +156,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
