@@ -22,4 +22,4 @@ If a player wins a game, it will be prompted to play the next level. On each lev
 * jQuery
 * Awesome Font
 * Google Fonts
-* [FEND Arcade Game Project - Getting Started(https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS)
+* [FEND Arcade Game Project - Getting Started](https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS)
